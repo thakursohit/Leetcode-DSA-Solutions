@@ -7,14 +7,18 @@ SC: O(k)
 class Solution {
   public:
     int kthSmallest(vector<int> &arr, int k) {
-        // code here
-        priority_queue<int> maxheap;
-        for(int i=0;i<arr.size();i++){
-            maxheap.push(arr[i]);
-            if(maxheap.size>k){
-                maxheap.pop();
+        priority_queue<int> maxHeap;
+        for(int num:arr){
+            if(maxHeap.size()<k){
+                maxHeap.push(num);
             }
-        }
-        return maxheap.top();
+            else if(maxHeap.top()>num){
+                    maxHeap.pop();
+                    maxHeap.push(num);
+                }
+            }
+        return maxHeap.top();
+       
+        
     }
 };
